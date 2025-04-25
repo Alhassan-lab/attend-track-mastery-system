@@ -1,4 +1,3 @@
-
 import React, { createContext, useState, useEffect, useContext } from "react";
 import { toast } from "sonner";
 
@@ -8,6 +7,40 @@ type User = {
   email: string;
   role: "lecturer" | "admin";
 };
+
+// Mock users database
+const mockUsers = [
+  {
+    email: "lecturer@example.com",
+    password: "password",
+    userData: {
+      id: "1",
+      name: "John Doe",
+      email: "lecturer@example.com",
+      role: "lecturer"
+    }
+  },
+  {
+    email: "admin@example.com",
+    password: "admin123",
+    userData: {
+      id: "2",
+      name: "Admin User",
+      email: "admin@example.com",
+      role: "admin"
+    }
+  },
+  {
+    email: "registry@example.com",
+    password: "registry123",
+    userData: {
+      id: "3",
+      name: "Registry Staff",
+      email: "registry@example.com",
+      role: "lecturer"
+    }
+  }
+];
 
 interface AuthContextType {
   user: User | null;
@@ -43,16 +76,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      // Mock login - In a real app, this would validate against a backend
-      if (email === "lecturer@example.com" && password === "password") {
-        const userData: User = {
-          id: "1",
-          name: "John Doe",
-          email: "lecturer@example.com",
-          role: "lecturer",
-        };
-        setUser(userData);
-        localStorage.setItem("user", JSON.stringify(userData));
+      // Find user in mock database
+      const foundUser = mockUsers.find(
+        (u) => u.email === email && u.password === password
+      );
+
+      if (foundUser) {
+        setUser(foundUser.userData);
+        localStorage.setItem("user", JSON.stringify(foundUser.userData));
         toast.success("Logged in successfully");
       } else {
         throw new Error("Invalid credentials");
