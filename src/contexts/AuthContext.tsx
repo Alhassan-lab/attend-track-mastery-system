@@ -1,3 +1,4 @@
+
 import React, { createContext, useState, useEffect, useContext } from "react";
 import { toast } from "sonner";
 
@@ -5,7 +6,7 @@ type User = {
   id: string;
   name: string;
   email: string;
-  role: "lecturer" | "admin";
+  role: "lecturer" | "admin" | "verification officer";
 };
 
 // Mock users database
@@ -38,6 +39,16 @@ const mockUsers = [
       name: "Registry Staff",
       email: "registry@example.com",
       role: "lecturer"
+    }
+  },
+  {
+    email: "abdallaahelhassani60@gmail.com",
+    password: "Alhassan9095!!!",
+    userData: {
+      id: "4",
+      name: "Verification Unit",
+      email: "abdallaahelhassani60@gmail.com",
+      role: "verification officer"
     }
   }
 ];
