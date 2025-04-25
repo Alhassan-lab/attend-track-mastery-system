@@ -7,8 +7,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
-import AttendanceScreen from "./pages/AttendanceScreen";
-import Reports from "./pages/Reports";
+import FileDetails from "./pages/FileDetails";
+import NewFile from "./pages/NewFile";
+import AdminDepartments from "./pages/AdminDepartments";
+import AdminUsers from "./pages/AdminUsers";
+import AdminHods from "./pages/AdminHods";
 import NotFound from "./pages/NotFound";
 import { AuthProvider } from "./contexts/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -26,8 +29,11 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-            <Route path="/attendance" element={<ProtectedRoute><AttendanceScreen /></ProtectedRoute>} />
-            <Route path="/reports" element={<ProtectedRoute><Reports /></ProtectedRoute>} />
+            <Route path="/files/new" element={<ProtectedRoute><NewFile /></ProtectedRoute>} />
+            <Route path="/files/:fileId" element={<ProtectedRoute><FileDetails /></ProtectedRoute>} />
+            <Route path="/admin/departments" element={<ProtectedRoute><AdminDepartments /></ProtectedRoute>} />
+            <Route path="/admin/users" element={<ProtectedRoute><AdminUsers /></ProtectedRoute>} />
+            <Route path="/admin/hods" element={<ProtectedRoute><AdminHods /></ProtectedRoute>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
